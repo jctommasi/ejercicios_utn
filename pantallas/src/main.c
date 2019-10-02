@@ -12,8 +12,8 @@ int main(void)
 {
 
 	int opNumber;
-	/*int id_autoinc_pantalla = 0;
-	int id_autoinc_publicidad = 10000;*/
+	int id_autoinc_pantalla = 0;
+	int id_autoinc_publicidad = 10000;
 
 	ePantalla arrayPantalla[DB_LENGHT];
 	pantalla_clear_all(arrayPantalla,DB_LENGHT);

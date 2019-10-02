@@ -120,7 +120,7 @@ int pantalla_signup(ePantalla array[], int size, int* contadorID)
     int posicion;
     if(array!=NULL && size>0 && contadorID!=NULL)
     {
-        if(publicidad_findEmpty(array,size,&posicion)==-1)
+        if(pantalla_findEmpty(array,size,&posicion)==-1)
         {
             printf("\nNo hay lugares vacios");
         }
@@ -168,7 +168,7 @@ int pantalla_destroy(ePantalla array[], int sizeArray)
     {
         utn_getUnsignedInt("\n\n\n\t\t\t\t\t\tID a cancelar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);
 
-        if(publicidad_findId(array,sizeArray,id,&posicion)==-1)
+        if(pantalla_findId(array,sizeArray,id,&posicion)==-1)
         {
             printf("\n\n\n"
             		"\t\t\t\t\t\t##############\n"
@@ -254,7 +254,7 @@ int pantalla_modify(ePantalla array[], int sizeArray)
     if(array!=NULL && sizeArray>0)
     {
         utn_getUnsignedInt("\n\t\t\t\t\t Ingrese el ID a modificar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);
-        if(publicidad_findId(array,sizeArray,id,&posicion)==-1)
+        if(pantalla_findId(array,sizeArray,id,&posicion)==-1)
         {
             printf("\n\n\n"
             		"\033[0;31m"
