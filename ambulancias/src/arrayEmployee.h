@@ -35,20 +35,20 @@ typedef struct
     char lastName[TEXT_SIZE]; // STRING TYPE
     char name[TEXT_SIZE]; // LONG STRING TYPE
 
-}Employee;
+}ePantalla;
 
 #endif
 
-int employee_clear_all(Employee array[], int size);
-int employee_checkIfDbHasEntries(Employee array[], int size);
-int employee_findEmpty(Employee array[], int size, int* posicion);
-int employee_findId(Employee array[], int size, int valorBuscado, int* posicion);
-int employee_searchInt(Employee array[], int size, int valorBuscado, int* posicion);
-int employee_searchString(Employee array[], int size, char* valorBuscado, int* indice);
-int employee_signup(Employee array[], int size, int* contadorID);
-int employee_destroy(Employee array[], int sizeArray);
-int employee_destroyMatchedInt(Employee array[], int sizeArray, int valorBuscado);
-int employee_modify(Employee array[], int sizeArray);
-int employee_sortByString(Employee array[],int size);
-int employee_paginate(Employee array[], int size);
-int employee_info_getSalaryMedia(Employee array[], int size);
+int publicidad_clear_all(ePantalla array[], int size);
+int publicidad_checkIfDbHasEntries(ePantalla array[], int size);
+int publicidad_findEmpty(ePantalla array[], int size, int* posicion);
+int publicidad_findId(ePantalla array[], int size, int valorBuscado, int* posicion);
+int publicidad_searchInt(ePantalla array[], int size, int valorBuscado, int* posicion);
+int publicidad_searchString(ePantalla array[], int size, char* valorBuscado, int* indice);
+int publicidad_signup(ePantalla array[], int size, int* contadorID);
+int publicidad_destroy(ePantalla array[], int sizeArray);
+int publicidad_destroyMatchedInt(ePantalla array[], int sizeArray, int valorBuscado);
+int publicidad_modify(ePantalla array[], int sizeArray);
+int publicidad_sortByString(ePantalla array[],int size);
+int publicidad_paginate(ePantalla array[], int size);
+int publicidad_info_getSalaryMedia(ePantalla array[], int size);

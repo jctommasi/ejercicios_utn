@@ -1,6 +1,6 @@
-#include "arrayEmployee.h"
+#include "arrayPantalla.h"
 
-int employee_clear_all(Employee array[], int size)
+int pantalla_clear_all(ePantalla array[], int size)
 {
     int retorno=-1;
     if(array != NULL && size>0)
@@ -14,7 +14,7 @@ int employee_clear_all(Employee array[], int size)
     return retorno;
 }
 
-int employee_checkIfDbHasEntries(Employee array[], int size)
+int pantalla_checkIfDbHasEntries(ePantalla array[], int size)
 {
 	int retorno=-1;
 	int i;
@@ -32,7 +32,7 @@ int employee_checkIfDbHasEntries(Employee array[], int size)
 	return retorno;
 }
 
-int employee_findEmpty(Employee array[], int size, int* posicion)
+int pantalla_findEmpty(ePantalla array[], int size, int* posicion)
 {
     int retorno=-1;
     int i;
@@ -51,7 +51,7 @@ int employee_findEmpty(Employee array[], int size, int* posicion)
     return retorno;
 }
 
-int employee_findId(Employee array[], int size, int valorBuscado, int* posicion)
+int pantalla_findId(ePantalla array[], int size, int valorBuscado, int* posicion)
 {
     int retorno=-1;
     int i;
@@ -61,7 +61,7 @@ int employee_findId(Employee array[], int size, int valorBuscado, int* posicion)
         {
             if(array[i].isEmpty==1)
                 continue;
-            else if(array[i].idUnico==valorBuscado)
+            else if(array[i].idPantalla==valorBuscado)
             {
                 retorno=0;
                 *posicion=i;
@@ -72,7 +72,7 @@ int employee_findId(Employee array[], int size, int valorBuscado, int* posicion)
     return retorno;
 }
 
-int employee_searchInt(Employee array[], int size, int valorBuscado, int* posicion)
+int pantalla_searchInt(ePantalla array[], int size, int valorBuscado, int* posicion)
 {
     int retorno=-1;
     int i;
@@ -82,7 +82,7 @@ int employee_searchInt(Employee array[], int size, int valorBuscado, int* posici
         {
             if(array[i].isEmpty==1)
                 continue;
-            else if(array[i].sector==valorBuscado)
+            else if(array[i].type==valorBuscado)
             {
                 retorno=0;
                 *posicion=i;
@@ -93,7 +93,7 @@ int employee_searchInt(Employee array[], int size, int valorBuscado, int* posici
     return retorno;
 }
 
-int employee_searchString(Employee array[], int size, char* valorBuscado, int* indice)
+int pantalla_searchString(ePantalla array[], int size, char* valorBuscado, int* indice)
 {
     int retorno=-1;
     int i;
@@ -103,7 +103,7 @@ int employee_searchString(Employee array[], int size, char* valorBuscado, int* i
         {
             if(array[i].isEmpty==1)
                 continue;
-            else if(strcmp(array[i].lastName,valorBuscado)==0)
+            else if(strcmp(array[i].name,valorBuscado)==0)
             {
                 *indice=i;
                 retorno=0;
@@ -114,25 +114,25 @@ int employee_searchString(Employee array[], int size, char* valorBuscado, int* i
     return retorno;
 }
 
-int employee_signup(Employee array[], int size, int* contadorID)
+int pantalla_signup(ePantalla array[], int size, int* contadorID)
 {
     int retorno=-1;
     int posicion;
     if(array!=NULL && size>0 && contadorID!=NULL)
     {
-        if(employee_findEmpty(array,size,&posicion)==-1)
+        if(publicidad_findEmpty(array,size,&posicion)==-1)
         {
             printf("\nNo hay lugares vacios");
         }
         else
         {
             (*contadorID)++;
-            array[posicion].idUnico=*contadorID;
+            array[posicion].idPantalla=*contadorID;
             array[posicion].isEmpty=0;
-            utn_getUnsignedInt("\n\n\n\t\t\t\t\t\tSector: ",MSG_DEFAULT_ERROR,1,sizeof(int),1,size,1,&array[posicion].sector);
-            utn_getName("\t\t\t\t\t\tApellido: ",MSG_DEFAULT_ERROR,1,TEXT_SIZE,1,array[posicion].lastName);
+            utn_getUnsignedInt("\n\n\n\t\t\t\t\t\ttype: ",MSG_DEFAULT_ERROR,1,sizeof(int),1,size,1,&array[posicion].type);
+            utn_getName("\t\t\t\t\t\tApellido: ",MSG_DEFAULT_ERROR,1,TEXT_SIZE,1,array[posicion].name);
             utn_getTexto("\t\t\t\t\t\tNombre: ",MSG_DEFAULT_ERROR,1,TEXT_SIZE,1,array[posicion].name);
-            utn_getFloat("\t\t\t\t\t\tSalario: ",MSG_DEFAULT_ERROR,1,sizeof(float),0,1,1,&array[posicion].salary);
+            utn_getFloat("\t\t\t\t\t\tSalario: ",MSG_DEFAULT_ERROR,1,sizeof(float),0,1,1,&array[posicion].pricePerDay);
             stuff_clearScreen();
             stuff_showSignUpBanner();
             printf(	"\n\n\n\t\t\t\t\t\t######################"
@@ -142,15 +142,15 @@ int employee_signup(Employee array[], int size, int* contadorID)
             		"\n\t\t\t\t\t\tID: %d"
             		"\n\t\t\t\t\t\tApellido: %s"
             		"\n\t\t\t\t\t\tNombre: %s"
-            		"\n\t\t\t\t\t\tSector: %d"
+            		"\n\t\t\t\t\t\ttype: %d"
             		"\n\t\t\t\t\t\tSalario: %f"
             		"\n\t\t\t\t\t\t######################\n",
                    posicion,
-				   array[posicion].idUnico,
-				   array[posicion].lastName,
+				   array[posicion].idPantalla,
 				   array[posicion].name,
-				   array[posicion].sector,
-				   array[posicion].salary);
+				   array[posicion].name,
+				   array[posicion].type,
+				   array[posicion].pricePerDay);
             stuff_sleep(3);
             retorno=0;
         }
@@ -158,7 +158,7 @@ int employee_signup(Employee array[], int size, int* contadorID)
     return retorno;
 }
 
-int employee_destroy(Employee array[], int sizeArray)
+int pantalla_destroy(ePantalla array[], int sizeArray)
 {
     int retorno=-1;
     int posicion;
@@ -168,7 +168,7 @@ int employee_destroy(Employee array[], int sizeArray)
     {
         utn_getUnsignedInt("\n\n\n\t\t\t\t\t\tID a cancelar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);
 
-        if(employee_findId(array,sizeArray,id,&posicion)==-1)
+        if(publicidad_findId(array,sizeArray,id,&posicion)==-1)
         {
             printf("\n\n\n"
             		"\t\t\t\t\t\t##############\n"
@@ -180,19 +180,19 @@ int employee_destroy(Employee array[], int sizeArray)
         else
         {
         	//antes del borrado, copio los datos para luego mostrar que es lo que se borro
-        	Employee arrayAux[sizeArray];
-        	arrayAux[posicion].idUnico = array[posicion].idUnico;
-        	arrayAux[posicion].sector = array[posicion].sector;
-        	arrayAux[posicion].salary = array[posicion].salary;
-        	strcpy(arrayAux[posicion].lastName,array[posicion].lastName);
+        	ePantalla arrayAux[sizeArray];
+        	arrayAux[posicion].idPantalla = array[posicion].idPantalla;
+        	arrayAux[posicion].type = array[posicion].type;
+        	arrayAux[posicion].pricePerDay = array[posicion].pricePerDay;
+        	strcpy(arrayAux[posicion].name,array[posicion].name);
         	strcpy(arrayAux[posicion].name,array[posicion].name);
 
         	//inicio borrado
             array[posicion].isEmpty=1;
-            array[posicion].idUnico=0;
-            array[posicion].sector=0;
-            array[posicion].salary=0;
-            strcpy(array[posicion].lastName,"");
+            array[posicion].idPantalla=0;
+            array[posicion].type=0;
+            array[posicion].pricePerDay=0;
+            strcpy(array[posicion].name,"");
             strcpy(array[posicion].name,"");
             retorno=0;
 
@@ -206,22 +206,22 @@ int employee_destroy(Employee array[], int sizeArray)
             		"\n\t\t\t\t\t\tID: %d"
             		"\n\t\t\t\t\t\tApellido: %s"
             		"\n\t\t\t\t\t\tNombre: %s"
-            		"\n\t\t\t\t\t\tSector: %d"
+            		"\n\t\t\t\t\t\ttype: %d"
             		"\n\t\t\t\t\t\tSalario: %f"
             		"\n\t\t\t\t\t\t######################\n",
                    posicion,
-				   arrayAux[posicion].idUnico,
-				   arrayAux[posicion].lastName,
+				   arrayAux[posicion].idPantalla,
 				   arrayAux[posicion].name,
-				   arrayAux[posicion].sector,
-				   arrayAux[posicion].salary);
+				   arrayAux[posicion].name,
+				   arrayAux[posicion].type,
+				   arrayAux[posicion].pricePerDay);
             stuff_sleep(6);
         }
     }
     return retorno;
 }
 
-int employee_destroyMatchedInt(Employee array[], int sizeArray, int valorBuscado)
+int pantalla_destroyMatchedInt(ePantalla array[], int sizeArray, int valorBuscado)
 {
     int retorno=-1;
     int i;
@@ -229,13 +229,13 @@ int employee_destroyMatchedInt(Employee array[], int sizeArray, int valorBuscado
     {
         for(i=0;i<sizeArray;i++)
         {
-            if(array[i].idUnico==valorBuscado)
+            if(array[i].idPantalla==valorBuscado)
             {
                 array[i].isEmpty=1;
-                array[i].idUnico=0;
-                array[i].sector=0;
-                array[i].salary=0;
-                strcpy(array[i].lastName,"");
+                array[i].idPantalla=0;
+                array[i].type=0;
+                array[i].pricePerDay=0;
+                strcpy(array[i].name,"");
                 strcpy(array[i].name,"");
             }
         }
@@ -244,7 +244,7 @@ int employee_destroyMatchedInt(Employee array[], int sizeArray, int valorBuscado
     return retorno;
 }
 
-int employee_modify(Employee array[], int sizeArray)
+int pantalla_modify(ePantalla array[], int sizeArray)
 {
     int retorno=-1;
     int posicion;
@@ -254,7 +254,7 @@ int employee_modify(Employee array[], int sizeArray)
     if(array!=NULL && sizeArray>0)
     {
         utn_getUnsignedInt("\n\t\t\t\t\t Ingrese el ID a modificar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);
-        if(employee_findId(array,sizeArray,id,&posicion)==-1)
+        if(publicidad_findId(array,sizeArray,id,&posicion)==-1)
         {
             printf("\n\n\n"
             		"\033[0;31m"
@@ -278,16 +278,16 @@ int employee_modify(Employee array[], int sizeArray)
                 		"\n\t\t\t\t\t\tPosicion: %d"
                 		"\n\t\t\t\t\t\tID: %d"
                 		"\n\t\t\t\t\t\t=================="
-                		"\n\t\t\t\t\t\tA - Sector: %d"
+                		"\n\t\t\t\t\t\tA - type: %d"
                 		"\n\t\t\t\t\t\tB - Salario: %f"
                 		"\n\t\t\t\t\t\tC - Apellido: %s"
                 		"\n\t\t\t\t\t\tD - Nombre: %s\n"
                 		"\033[0m",
                        posicion,
-					   array[posicion].idUnico,
-					   array[posicion].sector,
-					   array[posicion].salary,
-					   array[posicion].lastName,
+					   array[posicion].idPantalla,
+					   array[posicion].type,
+					   array[posicion].pricePerDay,
+					   array[posicion].name,
 					   array[posicion].name);
 
                 utn_getChar(MSG_MODIFY_CHOOSE, MSG_ERROR_MODIFY_CHOOSE,'A', 'Z', 3, &opcion);
@@ -295,13 +295,13 @@ int employee_modify(Employee array[], int sizeArray)
                 switch(opcion)
                 {
                     case 'A':
-                        utn_getUnsignedInt(MSG_MODIFY_SECTOR,MSG_ERROR_MODIFY_SECTOR,1,sizeof(int),1,sizeArray,1,&array[posicion].sector);
+                        utn_getUnsignedInt(MSG_MODIFY_TYPE,MSG_ERROR_MODIFY_TYPE,1,sizeof(int),1,sizeArray,1,&array[posicion].type);
                         break;
                     case 'B':
-                        utn_getFloat(MSG_MODIFY_SALARY,MSG_ERROR_MODIFY_SALARY,1,sizeof(float),0,1,1,&array[posicion].salary);
+                        utn_getFloat(MSG_MODIFY_PRICEPERDAY,MSG_ERROR_MODIFY_PRICEPERDAY,1,sizeof(float),0,1,1,&array[posicion].pricePerDay);
                         break;
                     case 'C':
-                        utn_getName(MSG_MODIFY_SURNAME,MSG_ERROR_MODIFY_SURNAME,1,TEXT_SIZE,1,array[posicion].lastName);
+                        utn_getName(MSG_MODIFY_SURNAME,MSG_ERROR_MODIFY_SURNAME,1,TEXT_SIZE,1,array[posicion].name);
                         break;
                     case 'D':
                         utn_getTexto(MSG_MODIFY_NAME,MSG_ERROR_MODIFY_NAME,1,TEXT_SIZE,1,array[posicion].name);
@@ -318,83 +318,82 @@ int employee_modify(Employee array[], int sizeArray)
     return retorno;
 }
 
-int employee_sortByString(Employee array[],int size)
+int pantalla_sortByString(ePantalla array[],int size)
 {
     int retorno=-1;
     int i, j;
 
-    char lastnameAux[TEXT_SIZE];
+    char nameAux[TEXT_SIZE];
     int idAux;
     int isemptyAux;
-    int sectorAux;
-    float salaryAux;
-    char nameAux[TEXT_SIZE];
+    int typeAux;
+    float pricePerDayAux;
 
     if(array!=NULL && size>=0)
     {
         for (i = 1; i < size; i++)
         {
-            strcpy(lastnameAux,array[i].lastName);
-            idAux=array[i].idUnico;
+            strcpy(nameAux,array[i].name);
+            idAux=array[i].idPantalla;
             isemptyAux=array[i].isEmpty;
 
-            sectorAux=array[i].sector;
-            salaryAux=array[i].salary;
+            typeAux=array[i].type;
+            pricePerDayAux=array[i].pricePerDay;
             strcpy(nameAux,array[i].name);
 
 
             j = i - 1;
-            while ((j >= 0) && strcmp(lastnameAux,array[j].lastName)<0)
+            while ((j >= 0) && strcmp(nameAux,array[j].name)<0)
             {
-                strcpy(array[j + 1].lastName,array[j].lastName);
-                array[j + 1].idUnico=array[j].idUnico;
+                strcpy(array[j + 1].name,array[j].name);
+                array[j + 1].idPantalla=array[j].idPantalla;
                 array[j + 1].isEmpty=array[j].isEmpty;
 
-                array[j + 1].sector=array[j].sector;
-                array[j + 1].salary=array[j].salary;
+                array[j + 1].type=array[j].type;
+                array[j + 1].pricePerDay=array[j].pricePerDay;
                 strcpy(array[j + 1].name,array[j].name);
 
                 j--;
             }
-            strcpy(array[j + 1].lastName,lastnameAux);
-            array[j + 1].idUnico=idAux;
+            strcpy(array[j + 1].name,nameAux);
+            array[j + 1].idPantalla=idAux;
             array[j + 1].isEmpty=isemptyAux;
 
-            array[j + 1].sector=sectorAux;
-            array[j + 1].salary=salaryAux;
+            array[j + 1].type=typeAux;
+            array[j + 1].pricePerDay=pricePerDayAux;
             strcpy(array[j + 1].name,nameAux);
         }
 
         for (i = 1; i < size; i++)
         {
-            strcpy(lastnameAux,array[i].lastName);
-            idAux=array[i].idUnico;
+            strcpy(nameAux,array[i].name);
+            idAux=array[i].idPantalla;
             isemptyAux=array[i].isEmpty;
 
-            sectorAux=array[i].sector;
-            salaryAux=array[i].salary;
+            typeAux=array[i].type;
+            pricePerDayAux=array[i].pricePerDay;
             strcpy(nameAux,array[i].name);
 
 
             j = i - 1;
-            while ((j >= 0) && sectorAux < array[j].sector)
+            while ((j >= 0) && typeAux < array[j].type)
             {
-                strcpy(array[j + 1].lastName,array[j].lastName);
-                array[j + 1].idUnico=array[j].idUnico;
+                strcpy(array[j + 1].name,array[j].name);
+                array[j + 1].idPantalla=array[j].idPantalla;
                 array[j + 1].isEmpty=array[j].isEmpty;
 
-                array[j + 1].sector=array[j].sector;
-                array[j + 1].salary=array[j].salary;
+                array[j + 1].type=array[j].type;
+                array[j + 1].pricePerDay=array[j].pricePerDay;
                 strcpy(array[j + 1].name,array[j].name);
 
                 j--;
             }
-            strcpy(array[j + 1].lastName,lastnameAux);
-            array[j + 1].idUnico=idAux;
+            strcpy(array[j + 1].name,nameAux);
+            array[j + 1].idPantalla=idAux;
             array[j + 1].isEmpty=isemptyAux;
 
-            array[j + 1].sector=sectorAux;
-            array[j + 1].salary=salaryAux;
+            array[j + 1].type=typeAux;
+            array[j + 1].pricePerDay=pricePerDayAux;
             strcpy(array[j + 1].name,nameAux);
         }
         retorno=0;
@@ -402,25 +401,24 @@ int employee_sortByString(Employee array[],int size)
     return retorno;
 }
 
-int employee_paginate(Employee array[], int size)
+int pantalla_paginate(ePantalla array[], int size)
 {
     int retorno=-1;
     int i;
     if(array!=NULL && size>=0)
     {
     	printf(	"#########################################################################################################################\n"
-    			"|\tID\t|\tSECTOR\t|\t\tSALARIO\t\t\t|\tAPELLIDO\t|\tNOMBRE\t\t|\n"
+    			"|\tID\t|\ttype\t|\t\tSALARIO\t\t\t|\tAPELLIDO\t|\tNOMBRE\t\t|\n"
     			"#########################################################################################################################\n");
         for(i=0;i<size;i++)
         {
             if(array[i].isEmpty==1)
                 continue;
             else
-            	printf("|\t%d\t|\t%d\t|\t\t%f\t\t|\t%s\t\t|\t%s\t\t|\n",
-                       array[i].idUnico,
-					   array[i].sector,
-					   array[i].salary,
-					   array[i].lastName,
+            	printf("|\t%d\t|\t%d\t|\t\t%f\t\t|\t%s\t\t\n",
+                       array[i].idPantalla,
+					   array[i].type,
+					   array[i].pricePerDay,
 					   array[i].name);
         }
         retorno=0;
@@ -429,15 +427,15 @@ int employee_paginate(Employee array[], int size)
     return retorno;
 }
 
-int employee_info_getSalaryMedia(Employee arrayEmployee[], int size)
+int pantalla_info_getpricePerDayMedia(ePantalla arrayEmployee[], int size)
 {
 	int i;
 
-	int employeesUpperMediaSalary = 0;
-	float salaryProm = 0;
+	int employeesUpperMediapricePerDay = 0;
+	float pricePerDayProm = 0;
     int retorno = -1;
-    float salaryAcum = 0;
-    int contSalary = 0;
+    float pricePerDayAcum = 0;
+    int contpricePerDay = 0;
 
     if(arrayEmployee!= NULL && size>=0)
     {
@@ -445,21 +443,21 @@ int employee_info_getSalaryMedia(Employee arrayEmployee[], int size)
         {
             if(arrayEmployee[i].isEmpty==0)
             {
-            	salaryAcum = salaryAcum + arrayEmployee[i].salary;
-            	contSalary++;
+            	pricePerDayAcum = pricePerDayAcum + arrayEmployee[i].pricePerDay;
+            	contpricePerDay++;
             }
         }
 
-        salaryProm = salaryAcum / contSalary;
+        pricePerDayProm = pricePerDayAcum / contpricePerDay;
 
         for(i=0;i<size;i++)
         {
-        	if(arrayEmployee[i].salary > salaryProm)
+        	if(arrayEmployee[i].pricePerDay > pricePerDayProm)
         	{
-        		employeesUpperMediaSalary++;
+        		employeesUpperMediapricePerDay++;
         	}
         }
-        printf("\n\t\tEl salario promedio es de: %f con un total de %i empleados que superan la media", salaryProm, employeesUpperMediaSalary);
+        printf("\n\t\tEl salario promedio es de: %f con un total de %i empleados que superan la media", pricePerDayProm, employeesUpperMediapricePerDay);
         retorno = 0;
     }
     return retorno;

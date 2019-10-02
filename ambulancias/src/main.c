@@ -14,8 +14,8 @@ int main(void)
 	int opNumber;
 	int id_autoinc = 0;
 
-	Employee arrayEmployee[DB_LENGHT];
-	employee_clear_all(arrayEmployee,DB_LENGHT);
+	ePantalla arrayEmployee[DB_LENGHT];
+	publicidad_clear_all(arrayEmployee,DB_LENGHT);
 
 	/*
 	Employee arrayEmployee[DB_LENGHT]=
@@ -38,26 +38,26 @@ int main(void)
 			case 1:
 				stuff_clearScreen();
 				stuff_showSignUpBanner();
-				employee_signup(arrayEmployee, DB_LENGHT, &id_autoinc);
+				publicidad_signup(arrayEmployee, DB_LENGHT, &id_autoinc);
 				break;
 			case 2:
-				if(employee_checkIfDbHasEntries(arrayEmployee, DB_LENGHT) >= 0)
+				if(publicidad_checkIfDbHasEntries(arrayEmployee, DB_LENGHT) >= 0)
 				{
 					stuff_clearScreen();
 					stuff_showDestroyBanner();
-					employee_destroy(arrayEmployee, DB_LENGHT);
+					publicidad_destroy(arrayEmployee, DB_LENGHT);
 				} else {stuff_printAndSleep(2, NO_EMPLOYEES_ERROR);}
 				break;
 			case 3:
-				if(employee_checkIfDbHasEntries(arrayEmployee, DB_LENGHT) >= 0)
+				if(publicidad_checkIfDbHasEntries(arrayEmployee, DB_LENGHT) >= 0)
 				{
 					stuff_clearScreen();
 					stuff_showModifyBanner();
-					employee_modify(arrayEmployee, DB_LENGHT);
+					publicidad_modify(arrayEmployee, DB_LENGHT);
 				} else {stuff_printAndSleep(2, NO_EMPLOYEES_ERROR);}
 				break;
 			case 4:
-				if(employee_checkIfDbHasEntries(arrayEmployee, DB_LENGHT) == 0)
+				if(publicidad_checkIfDbHasEntries(arrayEmployee, DB_LENGHT) == 0)
 				{
 					int reportNum;
 					stuff_clearScreen();
@@ -69,13 +69,13 @@ int main(void)
 					case 1:
 						stuff_clearScreen();
 						stuff_showPaginateBanner();
-						employee_sortByString(arrayEmployee,DB_LENGHT);
-						employee_paginate(arrayEmployee, DB_LENGHT);
+						publicidad_sortByString(arrayEmployee,DB_LENGHT);
+						publicidad_paginate(arrayEmployee, DB_LENGHT);
 						break;
 					case 2:
 						stuff_clearScreen();
 						stuff_showPromedio();
-						employee_info_getSalaryMedia(arrayEmployee, DB_LENGHT);
+						publicidad_info_getSalaryMedia(arrayEmployee, DB_LENGHT);
 						stuff_printAndSleep(2, MSG_REDIRECT);
 						break;
 					default:
