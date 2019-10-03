@@ -8,14 +8,14 @@
 #define MSG_ERROR_MODIFY_CHOOSE  "\nError al elegir"
 #define MSG_MODIFY_CHOOSE "\n\t\t\t\t\t(choose: A B C D # S = Salir)\n\n\t\t\t\t\tQue dato desea modificar?:"
 
-#define MSG_ERROR_MODIFY_DIAS  "\nError al modificar la edad"
-#define MSG_MODIFY_DIAS  "\nIngrese la edad, por favor:"
+#define MSG_ERROR_MODIFY_DIAS  "\nError al modificar la cantidad de dias"
+#define MSG_MODIFY_DIAS  "\nIngrese la nueva cantidad de dias, por favor:"
 
-#define MSG_ERROR_MODIFY_FILE  "\nError al modificar el pago"
-#define MSG_MODIFY_FILE "\nIngrese el nuevo monto del pago, por favor:"
+#define MSG_ERROR_MODIFY_FILE  "\nError al modificar el nombre del archivo"
+#define MSG_MODIFY_FILE "\nIngrese el nombre del archivo, por favor:"
 
-#define MSG_ERROR_MODIFY_CUIT  "\nError al modificar el apellido"
-#define MSG_MODIFY_CUIT "\nIngrese el nuevo apellido, por favor:"
+#define MSG_ERROR_MODIFY_CUIT  "\nError al modificar el cuit"
+#define MSG_MODIFY_CUIT "\nIngrese el nuevo cuit, por favor:"
 
 #include <string.h>
 #include <stdio.h>
