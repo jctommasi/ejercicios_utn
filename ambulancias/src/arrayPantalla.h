@@ -5,14 +5,17 @@
 
 #define MSG_DEFAULT_ERROR "\nError, opcion no valida..\n"
 
-#define MSG_ERROR_MODIFY_CHOOSE_PANTALLA  "\nError al elegir"
-#define MSG_MODIFY_CHOOSE_PANTALLA "\n\t\t\t\t\t(choose: A B C # S = Salir)\n\n\t\t\t\t\tQue dato desea modificar?:"
+#define MSG_ERROR_MODIFY_CHOOSE  "\nError al elegir"
+#define MSG_MODIFY_CHOOSE "\n\t\t\t\t\t(choose: A B C D # S = Salir)\n\n\t\t\t\t\tQue dato desea modificar?:"
 
-#define MSG_ERROR_MODIFY_TYPE   "\nError al modificar el tipo"
-#define MSG_MODIFY_TYPE   "\nIngrese el tipo, por favor:"
+#define MSG_ERROR_MODIFY_TYPE   "\nError al modificar la edad"
+#define MSG_MODIFY_TYPE   "\nIngrese la edad, por favor:"
 
-#define MSG_ERROR_MODIFY_PRICEPERDAY  "\nError al modificar el precio por dia"
-#define MSG_MODIFY_PRICEPERDAY "\nIngrese el nuevo monto del precio por dia, por favor:"
+#define MSG_ERROR_MODIFY_PRICEPERDAY  "\nError al modificar el pago"
+#define MSG_MODIFY_PRICEPERDAY "\nIngrese el nuevo monto del pago, por favor:"
+
+#define MSG_ERROR_MODIFY_SURNAME  "\nError al modificar el apellido"
+#define MSG_MODIFY_SURNAME "\nIngrese el nuevo apellido, por favor:"
 
 #define MSG_ERROR_MODIFY_NAME  "\nError al modificar el nombre"
 #define MSG_MODIFY_NAME "\nIngrese el nombre, por favor:"

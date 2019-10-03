@@ -22,17 +22,7 @@ void stuff_sleep(int sleepTime)
 void stuff_displayMainBanner()
 {
 	printf(	"\033[0;32m"
-			"\n\t\t#############################################################################\n"
-			"\t\tTRABAJO PRACTICO N-2 ## Alumno: Juan Cruz Tommasi ## Fecha de Entrega: 04 OCT\n"
-			"\t\t#############################################################################\n"
 			"\n\n\n"
-			"\t\t_______  __   __  _______  ___      _______  __   __  _______  _______                   \n"
-			"\t\t|       ||  |_|  ||       ||   |    |       ||  | |  ||       ||       |                  \n"
-			"\t\t|    ___||       ||    _  ||   |    |   _   ||  |_|  ||    ___||    ___|                  \n"
-			"\t\t|   |___ |       ||   |_| ||   |    |  | |  ||       ||   |___ |   |___                   \n"
-			"\t\t|    ___||       ||    ___||   |___ |  |_|  ||_     _||    ___||    ___|                  \n"
-			"\t\t|   |___ | ||_|| ||   |    |       ||       |  |   |  |   |___ |   |___                   \n"
-			"\t\t|_______||_|   |_||___|    |_______||_______|  |___|  |_______||_______|                  \n"
 			"\t\t__   __  _______  __    _  _______  _______  _______  __   __  _______  __    _  _______ \n"
 			"\t\t|  |_|  ||   _   ||  |  | ||   _   ||       ||       ||  |_|  ||       ||  |  | ||       |\n"
 			"\t\t|       ||  |_|  ||   |_| ||  |_|  ||    ___||    ___||       ||    ___||   |_| ||_     _|\n"
@@ -47,12 +37,18 @@ void stuff_displayMainBanner()
 void stuff_showMenu()
 {
 	printf("\033[0;31m");
-	printf("\t\tBienvenidx al sistema administrativo de empleados, que operacion desea realizar?\n"
-			"\n\t\t\t\t\t\t1. Alta"
-			"\n\t\t\t\t\t\t2. Baja"
-			"\n\t\t\t\t\t\t3. Modificar"
-			"\n\t\t\t\t\t\t4. Informar"
-			"\n\t\t\t\t\t\t5. Salir\n\n");
+	printf("\t\tBienvenidx, que operacion desea realizar?\n"
+			"\n\t\t\t\t\t\t1. Alta Pantalla"
+			"\n\t\t\t\t\t\t2. Modificar"
+			"\n\t\t\t\t\t\t3. Baja"
+			"\n\t\t\t\t\t\t4. Alta Publicidad"
+			"\n\t\t\t\t\t\t5. Modificar Publicidad"
+			"\n\t\t\t\t\t\t6. Baja Publicidad"
+			"\n\t\t\t\t\t\t7. Consulta de facturacion"
+			"\n\t\t\t\t\t\t8. Listar Contrataciones"
+			"\n\t\t\t\t\t\t9. Listar Pantallas"
+			"\n\t\t\t\t\t\t10. Informar"
+			"\n\t\t\t\t\t\t11. Salir\n\n");
 	printf("\033[0m");
 }
 

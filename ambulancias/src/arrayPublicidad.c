@@ -1,6 +1,6 @@
-#include "arrayPantalla.h"
+#include "arrayPublicidad.h"
 
-int pantalla_clear_all(ePantalla array[], int size)
+int publicidad_clear_all(ePublicidad array[], int size)
 {
     int retorno=-1;
     if(array != NULL && size>0)
@@ -14,7 +14,7 @@ int pantalla_clear_all(ePantalla array[], int size)
     return retorno;
 }
 
-int pantalla_checkIfDbHasEntries(ePantalla array[], int size)
+int publicidad_checkIfDbHasEntries(ePublicidad array[], int size)
 {
 	int retorno=-1;
 	int i;
@@ -32,7 +32,7 @@ int pantalla_checkIfDbHasEntries(ePantalla array[], int size)
 	return retorno;
 }
 
-int pantalla_findEmpty(ePantalla array[], int size, int* posicion)
+int publicidad_findEmpty(ePublicidad array[], int size, int* posicion)
 {
     int retorno=-1;
     int i;
@@ -51,7 +51,7 @@ int pantalla_findEmpty(ePantalla array[], int size, int* posicion)
     return retorno;
 }
 
-int pantalla_findId(ePantalla array[], int size, int valorBuscado, int* posicion)
+int publicidad_findId(ePublicidad array[], int size, int valorBuscado, int* posicion)
 {
     int retorno=-1;
     int i;
@@ -61,7 +61,7 @@ int pantalla_findId(ePantalla array[], int size, int valorBuscado, int* posicion
         {
             if(array[i].isEmpty==1)
                 continue;
-            else if(array[i].idPantalla==valorBuscado)
+            else if(array[i].idPublicidad==valorBuscado)
             {
                 retorno=0;
                 *posicion=i;
@@ -72,7 +72,7 @@ int pantalla_findId(ePantalla array[], int size, int valorBuscado, int* posicion
     return retorno;
 }
 
-int pantalla_searchInt(ePantalla array[], int size, int valorBuscado, int* posicion)
+int publicidad_searchInt(ePublicidad array[], int size, int valorBuscado, int* posicion)
 {
     int retorno=-1;
     int i;
@@ -82,7 +82,7 @@ int pantalla_searchInt(ePantalla array[], int size, int valorBuscado, int* posic
         {
             if(array[i].isEmpty==1)
                 continue;
-            else if(array[i].type==valorBuscado)
+            else if(array[i].cuit==valorBuscado)
             {
                 retorno=0;
                 *posicion=i;
@@ -93,7 +93,7 @@ int pantalla_searchInt(ePantalla array[], int size, int valorBuscado, int* posic
     return retorno;
 }
 
-int pantalla_searchString(ePantalla array[], int size, char* valorBuscado, int* indice)
+int publicidad_searchString(ePublicidad array[], int size, char* valorBuscado, int* indice)
 {
     int retorno=-1;
     int i;
@@ -103,7 +103,7 @@ int pantalla_searchString(ePantalla array[], int size, char* valorBuscado, int* 
         {
             if(array[i].isEmpty==1)
                 continue;
-            else if(strcmp(array[i].name,valorBuscado)==0)
+            else if(strcmp(array[i].archive,valorBuscado)==0)
             {
                 *indice=i;
                 retorno=0;
@@ -114,24 +114,24 @@ int pantalla_searchString(ePantalla array[], int size, char* valorBuscado, int* 
     return retorno;
 }
 
-int pantalla_signup(ePantalla array[], int size, int* contadorID)
+int publicidad_signup(ePublicidad array[], int size, int* contadorID)
 {
     int retorno=-1;
     int posicion;
     if(array!=NULL && size>0 && contadorID!=NULL)
     {
-        if(pantalla_findEmpty(array,size,&posicion)==-1)
+        if(publicidad_findEmpty(array,size,&posicion)==-1)
         {
             printf("\nNo hay lugares vacios");
         }
         else
         {
             (*contadorID)++;
-            array[posicion].idPantalla=*contadorID;
+            array[posicion].idPublicidad=*contadorID;
             array[posicion].isEmpty=0;
-            utn_getUnsignedInt("\n\n\n\t\t\t\t\t\tTipo: ",MSG_DEFAULT_ERROR,1,sizeof(int),1,size,1,&array[posicion].type);
-            utn_getTexto("\t\t\t\t\t\tNombre: ",MSG_DEFAULT_ERROR,1,TEXT_SIZE,1,array[posicion].name);
-            utn_getFloat("\t\t\t\t\t\tPrecio: ",MSG_DEFAULT_ERROR,1,sizeof(float),0,1,1,&array[posicion].pricePerDay);
+            utn_getUnsignedInt("\n\n\n\t\t\t\t\t\tCuit: ",MSG_DEFAULT_ERROR,1,sizeof(int),1,size,1,&array[posicion].cuit);
+            utn_getTexto("\t\t\t\t\t\tArchivo: ",MSG_DEFAULT_ERROR,1,TEXT_SIZE,1,array[posicion].archive);
+            utn_getUnsignedInt("\n\n\n\t\t\t\t\t\tDias: ",MSG_DEFAULT_ERROR,1,sizeof(int),1,size,1,&array[posicion].dias);
             stuff_clearScreen();
             stuff_showSignUpBanner();
             printf(	"\n\n\n\t\t\t\t\t\t######################"
@@ -139,15 +139,15 @@ int pantalla_signup(ePantalla array[], int size, int* contadorID)
             		"\n\t\t\t\t\t\t######################"
             		"\n\t\t\t\t\t\tPosicion: %d"
             		"\n\t\t\t\t\t\tID: %d"
-            		"\n\t\t\t\t\t\tTipo: %d"
-            		"\n\t\t\t\t\t\tNombre: %s"
-            		"\n\t\t\t\t\t\tPrecio por dia: %f"
+            		"\n\t\t\t\t\t\tFile: %s"
+            		"\n\t\t\t\t\t\tDias: %d"
+            		"\n\t\t\t\t\t\tCuit: %d"
             		"\n\t\t\t\t\t\t######################\n",
                    posicion,
-				   array[posicion].idPantalla,
-				   array[posicion].type,
-				   array[posicion].name,
-				   array[posicion].pricePerDay);
+				   array[posicion].idPublicidad,
+				   array[posicion].archive,
+				   array[posicion].cuit,
+				   array[posicion].dias);
             stuff_sleep(3);
             retorno=0;
         }
@@ -155,7 +155,7 @@ int pantalla_signup(ePantalla array[], int size, int* contadorID)
     return retorno;
 }
 
-int pantalla_destroy(ePantalla array[], int sizeArray)
+int publicidad_destroy(ePublicidad array[], int sizeArray)
 {
     int retorno=-1;
     int posicion;
@@ -165,7 +165,7 @@ int pantalla_destroy(ePantalla array[], int sizeArray)
     {
         utn_getUnsignedInt("\n\n\n\t\t\t\t\t\tID a cancelar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);
 
-        if(pantalla_findId(array,sizeArray,id,&posicion)==-1)
+        if(publicidad_findId(array,sizeArray,id,&posicion)==-1)
         {
             printf("\n\n\n"
             		"\t\t\t\t\t\t##############\n"
@@ -177,18 +177,18 @@ int pantalla_destroy(ePantalla array[], int sizeArray)
         else
         {
         	//antes del borrado, copio los datos para luego mostrar que es lo que se borro
-        	ePantalla arrayAux[sizeArray];
-        	arrayAux[posicion].idPantalla = array[posicion].idPantalla;
-        	arrayAux[posicion].type = array[posicion].type;
-        	arrayAux[posicion].pricePerDay = array[posicion].pricePerDay;
-        	strcpy(arrayAux[posicion].name,array[posicion].name);
+        	ePublicidad arrayAux[sizeArray];
+        	arrayAux[posicion].idPublicidad = array[posicion].idPublicidad;
+        	arrayAux[posicion].cuit = array[posicion].cuit;
+        	arrayAux[posicion].dias = array[posicion].dias;
+        	strcpy(arrayAux[posicion].archive,array[posicion].archive);
 
         	//inicio borrado
             array[posicion].isEmpty=1;
-            array[posicion].idPantalla=0;
-            array[posicion].type=0;
-            array[posicion].pricePerDay=0;
-            strcpy(array[posicion].name,"");
+            array[posicion].idPublicidad=0;
+            array[posicion].cuit=0;
+            array[posicion].dias=0;
+            strcpy(array[posicion].archive,"");
             retorno=0;
 
             //informe de borrado
@@ -199,22 +199,22 @@ int pantalla_destroy(ePantalla array[], int sizeArray)
             		"\n\t\t\t\t\t\t######################"
             		"\n\t\t\t\t\t\tPosicion: %d"
             		"\n\t\t\t\t\t\tID: %d"
-            		"\n\t\t\t\t\t\tTipo: %d"
-            		"\n\t\t\t\t\t\tNombre: %s"
-            		"\n\t\t\t\t\t\tPrecio por dia: %f"
+            		"\n\t\t\t\t\t\tApellido: %s"
+            		"\n\t\t\t\t\t\tNombre: %d"
+            		"\n\t\t\t\t\t\tcuit: %d"
             		"\n\t\t\t\t\t\t######################\n",
                    posicion,
-				   arrayAux[posicion].idPantalla,
-				   arrayAux[posicion].type,
-				   arrayAux[posicion].name,
-				   arrayAux[posicion].pricePerDay);
+				   arrayAux[posicion].idPublicidad,
+				   arrayAux[posicion].archive,
+				   arrayAux[posicion].cuit,
+				   arrayAux[posicion].dias);
             stuff_sleep(6);
         }
     }
     return retorno;
 }
 
-int pantalla_destroyMatchedInt(ePantalla array[], int sizeArray, int valorBuscado)
+int publicidad_destroyMatchedInt(ePublicidad array[], int sizeArray, int valorBuscado)
 {
     int retorno=-1;
     int i;
@@ -222,13 +222,13 @@ int pantalla_destroyMatchedInt(ePantalla array[], int sizeArray, int valorBuscad
     {
         for(i=0;i<sizeArray;i++)
         {
-            if(array[i].idPantalla==valorBuscado)
+            if(array[i].idPublicidad==valorBuscado)
             {
                 array[i].isEmpty=1;
-                array[i].idPantalla=0;
-                array[i].type=0;
-                array[i].pricePerDay=0;
-                strcpy(array[i].name,"");
+                array[i].idPublicidad=0;
+                array[i].cuit=0;
+                array[i].dias=0;
+                strcpy(array[i].archive,"");
             }
         }
         retorno=0;
@@ -236,7 +236,7 @@ int pantalla_destroyMatchedInt(ePantalla array[], int sizeArray, int valorBuscad
     return retorno;
 }
 
-int pantalla_modify(ePantalla array[], int sizeArray)
+int publicidad_modify(ePublicidad array[], int sizeArray)
 {
     int retorno=-1;
     int posicion;
@@ -246,7 +246,7 @@ int pantalla_modify(ePantalla array[], int sizeArray)
     if(array!=NULL && sizeArray>0)
     {
         utn_getUnsignedInt("\n\t\t\t\t\t Ingrese el ID a modificar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);
-        if(pantalla_findId(array,sizeArray,id,&posicion)==-1)
+        if(publicidad_findId(array,sizeArray,id,&posicion)==-1)
         {
             printf("\n\n\n"
             		"\033[0;31m"
@@ -270,28 +270,28 @@ int pantalla_modify(ePantalla array[], int sizeArray)
                 		"\n\t\t\t\t\t\tPosicion: %d"
                 		"\n\t\t\t\t\t\tID: %d"
                 		"\n\t\t\t\t\t\t=================="
-                		"\n\t\t\t\t\t\tA - Tipo: %d"
-                		"\n\t\t\t\t\t\tB - Precio por dia: %f"
-                		"\n\t\t\t\t\t\tC - Nombre: %s\n"
+                		"\n\t\t\t\t\t\tA - cuit: %d"
+                		"\n\t\t\t\t\t\tB - Salario: %d"
+                		"\n\t\t\t\t\t\tC - Apellido: %s"
                 		"\033[0m",
                        posicion,
-					   array[posicion].idPantalla,
-					   array[posicion].type,
-					   array[posicion].pricePerDay,
-					   array[posicion].name);
+					   array[posicion].idPublicidad,
+					   array[posicion].cuit,
+					   array[posicion].dias,
+					   array[posicion].archive);
 
-                utn_getChar(MSG_MODIFY_CHOOSE_PANTALLA, MSG_ERROR_MODIFY_CHOOSE_PANTALLA,'A', 'Z', 3, &opcion);
+                utn_getChar(MSG_MODIFY_CHOOSE, MSG_ERROR_MODIFY_CHOOSE,'A', 'Z', 3, &opcion);
 
                 switch(opcion)
                 {
                     case 'A':
-                        utn_getUnsignedInt(MSG_MODIFY_TYPE,MSG_ERROR_MODIFY_TYPE,1,sizeof(int),1,sizeArray,1,&array[posicion].type);
+                        utn_getUnsignedInt(MSG_MODIFY_CUIT,MSG_ERROR_MODIFY_CUIT,1,sizeof(int),1,sizeArray,1,&array[posicion].cuit);
                         break;
                     case 'B':
-                        utn_getFloat(MSG_MODIFY_PRICEPERDAY,MSG_ERROR_MODIFY_PRICEPERDAY,1,sizeof(float),0,1,1,&array[posicion].pricePerDay);
+                        utn_getUnsignedInt(MSG_MODIFY_DIAS,MSG_ERROR_MODIFY_DIAS,1,sizeof(int),1,sizeArray,1,&array[posicion].dias);
                         break;
                     case 'C':
-                        utn_getName(MSG_MODIFY_NAME,MSG_ERROR_MODIFY_NAME,1,TEXT_SIZE,1,array[posicion].name);
+                        utn_getTexto(MSG_MODIFY_FILE,MSG_ERROR_MODIFY_FILE,1,TEXT_SIZE,1,array[posicion].archive);
                         break;
                     case 'S':
                         break;
@@ -305,108 +305,109 @@ int pantalla_modify(ePantalla array[], int sizeArray)
     return retorno;
 }
 
-int pantalla_sortByString(ePantalla array[],int size)
+int publicidad_sortByString(ePublicidad array[],int size)
 {
     int retorno=-1;
     int i, j;
 
-    char nameAux[TEXT_SIZE];
+    char archiveAux[TEXT_SIZE];
     int idAux;
     int isemptyAux;
-    int typeAux;
-    float pricePerDayAux;
+    int cuitAux;
+    float diasAux;
+    char fileAux[TEXT_SIZE];
 
     if(array!=NULL && size>=0)
     {
         for (i = 1; i < size; i++)
         {
-            strcpy(nameAux,array[i].name);
-            idAux=array[i].idPantalla;
+            strcpy(archiveAux,array[i].archive);
+            idAux=array[i].idPublicidad;
             isemptyAux=array[i].isEmpty;
 
-            typeAux=array[i].type;
-            pricePerDayAux=array[i].pricePerDay;
-            strcpy(nameAux,array[i].name);
+            cuitAux=array[i].cuit;
+            diasAux=array[i].dias;
+            strcpy(fileAux,array[i].archive);
 
 
             j = i - 1;
-            while ((j >= 0) && strcmp(nameAux,array[j].name)<0)
+            while ((j >= 0) && strcmp(archiveAux,array[j].archive)<0)
             {
-                strcpy(array[j + 1].name,array[j].name);
-                array[j + 1].idPantalla=array[j].idPantalla;
+                strcpy(array[j + 1].archive,array[j].archive);
+                array[j + 1].idPublicidad=array[j].idPublicidad;
                 array[j + 1].isEmpty=array[j].isEmpty;
 
-                array[j + 1].type=array[j].type;
-                array[j + 1].pricePerDay=array[j].pricePerDay;
-                strcpy(array[j + 1].name,array[j].name);
+                array[j + 1].cuit=array[j].cuit;
+                array[j + 1].dias=array[j].dias;
+                strcpy(array[j + 1].archive,array[j].archive);
 
                 j--;
             }
-            strcpy(array[j + 1].name,nameAux);
-            array[j + 1].idPantalla=idAux;
+            strcpy(array[j + 1].archive,archiveAux);
+            array[j + 1].idPublicidad=idAux;
             array[j + 1].isEmpty=isemptyAux;
 
-            array[j + 1].type=typeAux;
-            array[j + 1].pricePerDay=pricePerDayAux;
-            strcpy(array[j + 1].name,nameAux);
+            array[j + 1].cuit=cuitAux;
+            array[j + 1].dias=diasAux;
+            strcpy(array[j + 1].archive,fileAux);
         }
 
         for (i = 1; i < size; i++)
         {
-            strcpy(nameAux,array[i].name);
-            idAux=array[i].idPantalla;
+            strcpy(archiveAux,array[i].archive);
+            idAux=array[i].idPublicidad;
             isemptyAux=array[i].isEmpty;
 
-            typeAux=array[i].type;
-            pricePerDayAux=array[i].pricePerDay;
-            strcpy(nameAux,array[i].name);
+            cuitAux=array[i].cuit;
+            diasAux=array[i].dias;
+            strcpy(fileAux,array[i].archive);
 
 
             j = i - 1;
-            while ((j >= 0) && typeAux < array[j].type)
+            while ((j >= 0) && cuitAux < array[j].cuit)
             {
-                strcpy(array[j + 1].name,array[j].name);
-                array[j + 1].idPantalla=array[j].idPantalla;
+                strcpy(array[j + 1].archive,array[j].archive);
+                array[j + 1].idPublicidad=array[j].idPublicidad;
                 array[j + 1].isEmpty=array[j].isEmpty;
 
-                array[j + 1].type=array[j].type;
-                array[j + 1].pricePerDay=array[j].pricePerDay;
-                strcpy(array[j + 1].name,array[j].name);
+                array[j + 1].cuit=array[j].cuit;
+                array[j + 1].dias=array[j].dias;
+                strcpy(array[j + 1].archive,array[j].archive);
 
                 j--;
             }
-            strcpy(array[j + 1].name,nameAux);
-            array[j + 1].idPantalla=idAux;
+            strcpy(array[j + 1].archive,archiveAux);
+            array[j + 1].idPublicidad=idAux;
             array[j + 1].isEmpty=isemptyAux;
 
-            array[j + 1].type=typeAux;
-            array[j + 1].pricePerDay=pricePerDayAux;
-            strcpy(array[j + 1].name,nameAux);
+            array[j + 1].cuit=cuitAux;
+            array[j + 1].dias=diasAux;
+            strcpy(array[j + 1].archive,fileAux);
         }
         retorno=0;
     }
     return retorno;
 }
 
-int pantalla_paginate(ePantalla array[], int size)
+int publicidad_paginate(ePublicidad array[], int size)
 {
     int retorno=-1;
     int i;
     if(array!=NULL && size>=0)
     {
     	printf(	"#########################################################################################################################\n"
-    			"|\tID\t|\ttype\t|\t\tSALARIO\t\t\t|\tAPELLIDO\t|\tNOMBRE\t\t|\n"
+    			"|\tID\t|\tcuit\t|\t\tSALARIO\t\t\t|\tAPELLIDO\t|\tNOMBRE\t\t|\n"
     			"#########################################################################################################################\n");
         for(i=0;i<size;i++)
         {
             if(array[i].isEmpty==1)
                 continue;
             else
-            	printf("|\t%d\t|\t%d\t|\t\t%f\t\t|\t%s\t\t\n",
-                       array[i].idPantalla,
-					   array[i].type,
-					   array[i].pricePerDay,
-					   array[i].name);
+            	printf("|\t%d\t|\t%d\t|\t\t%d\t\t|\t%s\t\t\n",
+                       array[i].idPublicidad,
+					   array[i].cuit,
+					   array[i].dias,
+					   array[i].archive);
         }
         retorno=0;
         stuff_sleep(5);
@@ -414,15 +415,15 @@ int pantalla_paginate(ePantalla array[], int size)
     return retorno;
 }
 
-int pantalla_info_getpricePerDayMedia(ePantalla arrayEmployee[], int size)
+int publicidad_info_getdiasMedia(ePublicidad arrayEmployee[], int size)
 {
 	int i;
 
-	int employeesUpperMediapricePerDay = 0;
-	float pricePerDayProm = 0;
+	int employeesUpperMediadias = 0;
+	float diasProm = 0;
     int retorno = -1;
-    float pricePerDayAcum = 0;
-    int contpricePerDay = 0;
+    float diasAcum = 0;
+    int contdias = 0;
 
     if(arrayEmployee!= NULL && size>=0)
     {
@@ -430,21 +431,21 @@ int pantalla_info_getpricePerDayMedia(ePantalla arrayEmployee[], int size)
         {
             if(arrayEmployee[i].isEmpty==0)
             {
-            	pricePerDayAcum = pricePerDayAcum + arrayEmployee[i].pricePerDay;
-            	contpricePerDay++;
+            	diasAcum = diasAcum + arrayEmployee[i].dias;
+            	contdias++;
             }
         }
 
-        pricePerDayProm = pricePerDayAcum / contpricePerDay;
+        diasProm = diasAcum / contdias;
 
         for(i=0;i<size;i++)
         {
-        	if(arrayEmployee[i].pricePerDay > pricePerDayProm)
+        	if(arrayEmployee[i].dias > diasProm)
         	{
-        		employeesUpperMediapricePerDay++;
+        		employeesUpperMediadias++;
         	}
         }
-        printf("\n\t\tEl salario promedio es de: %f con un total de %i empleados que superan la media", pricePerDayProm, employeesUpperMediapricePerDay);
+        printf("\n\t\tEl salario promedio es de: %f con un total de %i empleados que superan la media", diasProm, employeesUpperMediadias);
         retorno = 0;
     }
     return retorno;
