@@ -43,59 +43,116 @@ int main(void)
 	do
 		{
 			stuff_showMenu();
-			utn_getUnsignedInt(MSG, MSG_ERROR,1,2,1,2,2, &opNumber);
+			utn_getUnsignedInt(MSG, MSG_ERROR,1,11,1,11,2, &opNumber);
 			switch (opNumber)
 			{
+
 				case 1:
+					/*Alta de pantalla: Se solicitan al usuario los datos de la pantalla, para que el sistema
+					pueda​ ​ funcionar​ ​ se​ ​ deberá​ ​ generar​ ​ un​ ​ ID​ ​ único​ ​ para​ ​ cada​ ​ pantalla.*/
+
 					pantalla_signup(arrayPantalla, DB_PANTALLA_LENGHT, &id_autoinc_pantalla);
 					break;
 
 				case 2:
+					/*Modificar datos de pantalla: Se ingresa el ID de la pantalla, permitiendo modificar sus
+					datos.*/
+
 					if(pantalla_checkIfDbHasEntries(arrayPantalla, DB_PANTALLA_LENGHT) >= 0)
 					{
 						pantalla_modify(arrayPantalla, DB_PANTALLA_LENGHT);
-					} else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
+					}
+					else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
 					break;
 
 				case 3:
+					/*Baja de pantalla: Se ingresa el ID de la pantalla, se eliminará la pantalla junto con todas
+					las​ ​ contrataciones​ ​ de​ ​ publicidad​ ​ para​ ​ esta​ ​ pantalla.*/
+
 					if(pantalla_checkIfDbHasEntries(arrayPantalla, DB_PANTALLA_LENGHT) >= 0)
 					{
 						pantalla_destroy(arrayPantalla, DB_PANTALLA_LENGHT);
-					} else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
+
+					}
+					else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
 					break;
 
 				case 4:
+					/*Contratar una publicidad: ​ Se listaran todas las pantallas y se le pedirá al usuario que
+					elija la pantalla donde se quiere publicar, ingresando su ID. Luego se pedirán los datos
+					asociados a la publicidad: cuit del cliente, cantidad de días que dura la publicación y
+					nombre​ ​ del​ ​ archivo​ ​ de​ ​ video​ ​ (p.ej.​ ​ Video1.avi).*/
+
 					publicidad_signup(arrayPublicidad, DB_PUBLICIDAD_LENGHT, &id_autoinc_publicidad);
 					break;
 
 				case 5:
+					/*Modificar condiciones de publicación: ​ Se pedirá que se ingrese el cuit del cliente y se
+					listaran todas las pantallas de video que el cliente tiene contratadas mostrando todos sus
+					campos. Luego de ingresar el ID de la pantalla, se permitirá modificar la cantidad de días
+					contratados​ ​ para​ ​ la​ ​ misma.*/
+
 					if(publicidad_checkIfDbHasEntries(arrayPublicidad, DB_PUBLICIDAD_LENGHT) >= 0)
 					{
 						publicidad_modify(arrayPublicidad, DB_PUBLICIDAD_LENGHT);
-					}else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
+					}
+					else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
 					break;
 
 				case 6:
-					if(publicidad_checkIfDbHasEntries(arrayPublicidad, DB_PUBLICIDAD_LENGHT) >= 0)
+					/*Cancelar contratación: ​ Se pedirá que se ingrese el cuit del cliente y se listaran todas las
+					pantallas de video que el cliente tiene contratadas mostrando todos sus campos. Luego
+					ingresar​ ​ el​ ​ ID​ ​ de​ ​ la​ ​ pantalla​ ​ de​ ​ la​ ​ cual​ ​ se​ ​ quiere​ ​ cancelar​ ​ la​ ​ contratación.*/
+
+					if(publicidad_checkIfDbHasEntries(arrayPublicidad, DB_PUBLICIDAD_LENGHT) >= 0 && pantalla_checkIfDbHasEntries(arrayPantalla, DB_PANTALLA_LENGHT) >= 0)
 					{
 						publicidad_destroy(arrayPublicidad, DB_PUBLICIDAD_LENGHT);
-					}else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
+					}
+					else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
 					break;
 
 				case 7:
+					/*Consulta facturación: Se deberá ingresar el cuit del cliente y se deberá listar el importe
+					a​ ​ pagar​ ​ por​ ​ cada​ ​ contratación.*/
 
+					if(publicidad_checkIfDbHasEntries(arrayPublicidad, DB_PUBLICIDAD_LENGHT) >= 0 && pantalla_checkIfDbHasEntries(arrayPantalla, DB_PANTALLA_LENGHT) >= 0)
+					{
+						publicidad_destroy(arrayPublicidad, DB_PUBLICIDAD_LENGHT);
+					}
+					else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
 					break;
 
 				case 8:
+					/*Listar contrataciones: ​ Se deberán listar las contrataciones indicando nombre de la
+					pantalla,​ ​ nombre​ ​ de​ ​ video,​ ​ cantidad​ ​ de​ ​ días​ ​ y ​ ​ cuit​ ​ de​ ​ cliente.*/
 
+					if(publicidad_checkIfDbHasEntries(arrayPublicidad, DB_PUBLICIDAD_LENGHT) >= 0)
+					{
+
+					}
+					else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
 					break;
 
 				case 9:
+					/*Listar​ ​ pantallas:​ ​ Se​ ​ deberán​ ​ listar​ ​ las​ ​ pantallas​ ​ existentes​ ​ indicando​ ​ todos​ ​ sus​ ​ campos.*/
 
+					if(pantalla_checkIfDbHasEntries(arrayPantalla, DB_PANTALLA_LENGHT) >= 0)
+					{
+
+					}
+					else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
 					break;
 
 				case 10:
+					/*Informar:
+					1. Lista​ ​ de​ ​ cada​ ​ cliente​ ​ con​ ​ cantidad​ ​ de​ ​ contrataciones​ ​ e ​ ​ importe​ ​ a ​ ​ pagar​ ​ por​ ​ cada​ ​ una.
+					2. Cliente​ ​ con​ ​ importe​ ​ más​ ​ alto​ ​ a ​ ​ facturar​ ​ (si​ ​ hay​ ​ más​ ​ de​ ​ uno​ ​ indicar​ ​ el​ ​ primero)*/
 
+					if(publicidad_checkIfDbHasEntries(arrayPublicidad, DB_PUBLICIDAD_LENGHT) >= 0 && pantalla_checkIfDbHasEntries(arrayPantalla, DB_PANTALLA_LENGHT) >= 0)
+					{
+
+					}
+					else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
 					break;
 
 				default:
