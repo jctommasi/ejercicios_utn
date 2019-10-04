@@ -483,17 +483,28 @@ int publicidad_sortByCuit(ePublicidad arrayPublicidad[], int size)
 	return retorno;
 }
 
-/*
+
 int publicidad_getClient_mayorDeudor(ePublicidad arrayPublicidad[],ePantalla arrayPantalla[], int sizePubli, int sizePant)
 {
-	int i,j;
+	int i,j, auxCuit;
+	int retorno = -1;
 	int cuitDeudor = 0;
 	float cuitDeudaTotal = 0;
 
-	for (i = 1; i < sizePubli; i++)
+	publicidad_sortByCuit(arrayPublicidad, sizePubli);
+
+	for (i = 0; i < sizePubli; i++)
     {
+		if(arrayPublicidad[i].cuit != auxCuit)
+		{
+			auxCuit = arrayPublicidad[i].cuit;
+			for (j = 0; j < sizePubli; j++)
+			{
+
+			}
+		}
 
     }
+	return retorno;
 }
 
-*/
