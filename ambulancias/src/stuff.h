@@ -16,12 +16,12 @@ void stuff_printAndSleep(int sleepTime, char msg[]);
 void stuff_sleep(int sleepTime);
 void stuff_displayMainBanner();
 void stuff_showMenu();
-void stuff_showPromedio();
+void stuff_showReportBanner();
 void stuff_showReportsMenu();
 void stuff_showSignUpBanner();
 void stuff_showDestroyBanner();
 void stuff_showModifyBanner();
 void stuff_showPaginateBanner();
-void stuff_employeeGoneAway();
+void stuff_showDestroyed();
 
 #endif /* STUFF_H_ */

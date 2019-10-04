@@ -193,7 +193,7 @@ int publicidad_destroy(ePublicidad array[], int sizeArray)
 
             //informe de borrado
             stuff_clearScreen();
-            stuff_employeeGoneAway();
+            stuff_showDestroyed();
             printf(	"\n\n\n\t\t\t\t\t\t######################"
             		"\n\t\t\t\t\t\tBORRADO SATISFACTORIO"
             		"\n\t\t\t\t\t\t######################"
@@ -315,7 +315,6 @@ int publicidad_sortByString(ePublicidad array[],int size)
     int isemptyAux;
     int cuitAux;
     float diasAux;
-    char fileAux[TEXT_SIZE];
 
     if(array!=NULL && size>=0)
     {
@@ -324,11 +323,8 @@ int publicidad_sortByString(ePublicidad array[],int size)
             strcpy(archiveAux,array[i].archive);
             idAux=array[i].idPublicidad;
             isemptyAux=array[i].isEmpty;
-
             cuitAux=array[i].cuit;
             diasAux=array[i].dias;
-            strcpy(fileAux,array[i].archive);
-
 
             j = i - 1;
             while ((j >= 0) && strcmp(archiveAux,array[j].archive)<0)
@@ -336,20 +332,17 @@ int publicidad_sortByString(ePublicidad array[],int size)
                 strcpy(array[j + 1].archive,array[j].archive);
                 array[j + 1].idPublicidad=array[j].idPublicidad;
                 array[j + 1].isEmpty=array[j].isEmpty;
-
                 array[j + 1].cuit=array[j].cuit;
                 array[j + 1].dias=array[j].dias;
-                strcpy(array[j + 1].archive,array[j].archive);
 
                 j--;
             }
             strcpy(array[j + 1].archive,archiveAux);
             array[j + 1].idPublicidad=idAux;
             array[j + 1].isEmpty=isemptyAux;
-
             array[j + 1].cuit=cuitAux;
             array[j + 1].dias=diasAux;
-            strcpy(array[j + 1].archive,fileAux);
+
         }
 
         for (i = 1; i < size; i++)
@@ -360,7 +353,6 @@ int publicidad_sortByString(ePublicidad array[],int size)
 
             cuitAux=array[i].cuit;
             diasAux=array[i].dias;
-            strcpy(fileAux,array[i].archive);
 
 
             j = i - 1;
@@ -382,7 +374,6 @@ int publicidad_sortByString(ePublicidad array[],int size)
 
             array[j + 1].cuit=cuitAux;
             array[j + 1].dias=diasAux;
-            strcpy(array[j + 1].archive,fileAux);
         }
         retorno=0;
     }
@@ -450,3 +441,59 @@ int publicidad_info_getdiasMedia(ePublicidad arrayEmployee[], int size)
     }
     return retorno;
 }
+
+int publicidad_sortByCuit(ePublicidad arrayPublicidad[], int size)
+{
+    int retorno=-1;
+    int i, j;
+
+    ePublicidad arrayAux;
+
+    char archiveAux[TEXT_SIZE];
+    int idPantallaAux;
+    int idPublicidadAux;
+    int isemptyAux;
+    int cuitAux;
+    int diasAux;
+    int isSorted = 0;
+
+	if(arrayPublicidad!= NULL && size>=0)
+	{
+		while (isSorted != 1)
+		{
+			isSorted = 1;
+			for(i=0;i<size-1;i++)
+			{
+				j = i + 1;
+
+				arrayAux = arrayPublicidad[i];
+
+				if(arrayPublicidad[i].cuit < arrayPublicidad[j].cuit)
+				{
+
+					arrayPublicidad[i] = arrayPublicidad[j];
+					arrayPublicidad[j] = arrayAux;
+					isSorted = 0;
+				}
+
+			}
+		}
+	}
+
+	return retorno;
+}
+
+/*
+int publicidad_getClient_mayorDeudor(ePublicidad arrayPublicidad[],ePantalla arrayPantalla[], int sizePubli, int sizePant)
+{
+	int i,j;
+	int cuitDeudor = 0;
+	float cuitDeudaTotal = 0;
+
+	for (i = 1; i < sizePubli; i++)
+    {
+
+    }
+}
+
+*/

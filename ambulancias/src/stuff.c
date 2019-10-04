@@ -147,7 +147,7 @@ void stuff_showReportsMenu()
 			"\n\t\t\t\t\t\t2. Calcular sueldo promedio y cuantos empleados lo superan\n\n");
 }
 
-void stuff_showPromedio()
+void stuff_showReportBanner()
 {
 	printf(	"\033[0;32m"
 			"\n\t\t#############################################################################\n"
@@ -193,7 +193,7 @@ void stuff_showPaginateBanner()
 			"\033[0m");
 }
 
-void stuff_employeeGoneAway()
+void stuff_showDestroyed()
 {
 	printf(	"\033[0;32m"
 			"\n\t\t#############################################################################\n"

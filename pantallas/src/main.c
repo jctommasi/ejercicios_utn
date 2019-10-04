@@ -37,7 +37,7 @@ int main(void)
 			{ 1002, 2, 0, 854, 4, "Doe.mp4"},
 			{ 1003, 3, 0, 111, 13, "Patton.mp4"},
 			{ 1004, 1, 0, 111, 4, "Marley.mp4"},
-			{ 1005, 0, 0, 854, 1, "Presley.mp4"},
+			{ 1005, 0, 0, 999, 1, "Presley.mp4"},
 		};
 
 	do
@@ -128,6 +128,8 @@ int main(void)
 
 					if(publicidad_checkIfDbHasEntries(arrayPublicidad, DB_PUBLICIDAD_LENGHT) >= 0)
 					{
+						publicidad_sortByCuit(arrayPublicidad, 6);
+						publicidad_paginate(arrayPublicidad, 6);
 
 					}
 					else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
@@ -150,7 +152,28 @@ int main(void)
 
 					if(publicidad_checkIfDbHasEntries(arrayPublicidad, DB_PUBLICIDAD_LENGHT) >= 0 && pantalla_checkIfDbHasEntries(arrayPantalla, DB_PANTALLA_LENGHT) >= 0)
 					{
+							int reportNum;
+							stuff_clearScreen();
+							stuff_showReportsMenu();
+							utn_getUnsignedInt(MSG, MSG_ERROR,1,2,1,2,2, &reportNum);
 
+							switch (reportNum)
+							{
+							case 1:
+								stuff_clearScreen();
+								stuff_showPaginateBanner();
+
+								break;
+							case 2:
+								stuff_clearScreen();
+								stuff_showReportBanner();
+
+								stuff_printAndSleep(2, MSG_REDIRECT);
+								break;
+							default:
+								printf(MSG_ERROR);
+								break;
+							}
 					}
 					else {stuff_printAndSleep(2, NO_DBENTRIES_ERROR);}
 					break;

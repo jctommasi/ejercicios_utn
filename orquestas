@@ -1,0 +1,21 @@
+orquesta
+	lugar
+	tipo
+	nombre
+	id
+	isempty
+
+musico
+	idInstrumento
+	apellido
+	nombre
+	idMusic
+	edad
+	isEmpty
+	idOrq
+
+instrumento
+	id
+	nombre
+	tipo
+	isempty

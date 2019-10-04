@@ -47,5 +47,6 @@ int publicidad_destroy(ePublicidad array[], int sizeArray);
 int publicidad_destroyMatchedInt(ePublicidad array[], int sizeArray, int valorBuscado);
 int publicidad_modify(ePublicidad array[], int sizeArray);
 int publicidad_sortByString(ePublicidad array[],int size);
+int publicidad_sortByCuit(ePublicidad arrayPublicidad[], int size);
 int publicidad_paginate(ePublicidad array[], int size);
 int publicidad_info_getSalaryMedia(ePublicidad array[], int size);

@@ -193,7 +193,7 @@ int publicidad_destroy(ePublicidad array[], int sizeArray)
 
             //informe de borrado
             stuff_clearScreen();
-            stuff_employeeGoneAway();
+            stuff_showDestroyed();
             printf(	"\n\n\n\t\t\t\t\t\t######################"
             		"\n\t\t\t\t\t\tBORRADO SATISFACTORIO"
             		"\n\t\t\t\t\t\t######################"
